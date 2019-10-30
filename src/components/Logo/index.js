@@ -73,7 +73,7 @@ function init() {
 
   new RGBELoader()
     .setDataType(UnsignedByteType)
-    .setPath("img/")
+    .setPath("/img/")
     .load("venice_sunset_2k.hdr", texture => {
       const options = {
         minFilter: texture.minFilter,
@@ -119,7 +119,7 @@ function initScene(sceneInfo) {
   loader = new GLTFLoader()
 
   loader.load(
-    "img/logo.glb",
+    "/img/logo.glb",
     data => {
       gltf = data
 
