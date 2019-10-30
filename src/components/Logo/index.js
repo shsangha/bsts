@@ -16,6 +16,7 @@ import {
   TextureLoader,
 } from "three"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
+import tex from "./env.jpg"
 
 let mounted = true
 
@@ -72,7 +73,7 @@ function init() {
 
   window.addEventListener("resize", onWindowResize, false)
 
-  new TextureLoader().load("img/env.jpg", texture => {
+  new TextureLoader().load(tex, texture => {
     texture.mapping = EquirectangularReflectionMapping
     texture.magFilter = LinearFilter
     texture.minFilter = LinearMipMapLinearFilter
