@@ -1,8 +1,6 @@
 import React, { Component } from "react"
 import {
   WebGLRenderer,
-  WebGLRenderTargetCube,
-  UnsignedByteType,
   Scene,
   PerspectiveCamera,
   Object3D,
@@ -11,11 +9,13 @@ import {
   Plane,
   Raycaster,
   Vector2,
+  EquirectangularReflectionMapping,
+  sRGBEncoding,
+  LinearFilter,
+  LinearMipMapLinearFilter,
+  TextureLoader,
 } from "three"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
-import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader"
-import { PMREMGenerator } from "three/examples/jsm/pmrem/PMREMGenerator"
-import { PMREMCubeUVPacker } from "three/examples/jsm/pmrem/PMREMCubeUVPacker"
 
 let mounted = true
 
@@ -32,6 +32,7 @@ class Logo extends Component {
     return (
       <div
         style={{
+          overflow: "hidden",
           position: "fixed",
           left: "0",
           right: "0",
@@ -44,9 +45,9 @@ class Logo extends Component {
   }
 }
 
-let container, camera, scene, renderer, loader, background, envMap, gltf, box
+let container, camera, scene, renderer, loader, envMap, gltf, box
 
-const plane = new Plane(new Vector3(0, 0, 1), 0.8)
+const plane = new Plane(new Vector3(0, 0, 1), 0.6)
 const pointOfIntersection = new Vector3()
 const raycaster = new Raycaster()
 const mouse = new Vector2()
@@ -71,37 +72,17 @@ function init() {
 
   window.addEventListener("resize", onWindowResize, false)
 
-  new RGBELoader()
-    .setDataType(UnsignedByteType)
-    .setPath("/img/")
-    .load("venice_sunset_2k.hdr", texture => {
-      const options = {
-        minFilter: texture.minFilter,
-        magFilter: texture.magFilter,
-      }
+  new TextureLoader().load("img/env.jpg", texture => {
+    texture.mapping = EquirectangularReflectionMapping
+    texture.magFilter = LinearFilter
+    texture.minFilter = LinearMipMapLinearFilter
+    texture.encoding = sRGBEncoding
 
-      background = new WebGLRenderTargetCube(
-        1024,
-        1024,
-        options
-      ).fromEquirectangularTexture(renderer, texture)
+    envMap = texture
 
-      const pmremGenerator = new PMREMGenerator(background.texture)
-      pmremGenerator.update(renderer)
-
-      const pmremCubeUVPacker = new PMREMCubeUVPacker(pmremGenerator.cubeLods)
-      pmremCubeUVPacker.update(renderer)
-
-      envMap = pmremCubeUVPacker.CubeUVRenderTarget.texture
-
-      pmremGenerator.dispose()
-      pmremCubeUVPacker.dispose()
-
-      //
-
-      initScene(Model)
-      animate()
-    })
+    initScene(Model)
+    animate()
+  })
 }
 
 function initScene(sceneInfo) {
@@ -119,7 +100,7 @@ function initScene(sceneInfo) {
   loader = new GLTFLoader()
 
   loader.load(
-    "/img/ll.glb",
+    "/img/logo.glb",
     data => {
       gltf = data
 
@@ -134,7 +115,7 @@ function initScene(sceneInfo) {
                 node.material.envMap !== undefined))
           ) {
             node.material.envMap = envMap
-            node.material.envMapIntensity = 1
+            node.material.envMapIntensity = 2
           }
         })
       }
@@ -144,16 +125,14 @@ function initScene(sceneInfo) {
 
       scene.add(pivot)
 
-      //			scene.add(object);
-
       container.addEventListener("mousemove", onMouseMove, false)
+      container.addEventListener("touchmove", onTouchMove, false)
 
       const mroot = object
       const bbox = new Box3().setFromObject(mroot)
       const cent = bbox.getCenter(new Vector3())
       const size = bbox.getSize(new Vector3())
 
-      //Rescale the object to normalized space
       const maxAxis = Math.max(size.x, size.y, size.z)
       mroot.scale.multiplyScalar(1.0 / maxAxis)
       bbox.setFromObject(mroot)
@@ -162,7 +141,7 @@ function initScene(sceneInfo) {
       mroot.position.y -= size.y * 0.5
 
       mroot.position.copy(cent).multiplyScalar(-1)
-      mroot.position.z -= 2
+      mroot.position.z -= 2.5
 
       box = object
 
@@ -181,6 +160,13 @@ function onMouseMove(event) {
   raycaster.setFromCamera(mouse, camera)
   raycaster.ray.intersectPlane(plane, pointOfIntersection)
   box.lookAt(pointOfIntersection)
+}
+
+function onTouchMove(event) {
+  event.preventDefault()
+  const e = event.touches[0]
+
+  onMouseMove(e)
 }
 
 function onWindowResize() {
