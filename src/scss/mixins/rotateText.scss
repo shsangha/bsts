@@ -1,0 +1,9 @@
+@mixin rotateLHS {
+  transform-origin: center center;
+  transform: rotate(-90deg);
+}
+
+@mixin rotateRHS {
+  transform-origin: center center;
+  transform: rotate(90deg);
+}

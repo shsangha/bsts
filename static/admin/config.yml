@@ -1,0 +1,54 @@
+backend:
+  name: git-gateway
+  branch: master
+
+publish_mode: editorial_workflow
+
+media_folder: static/img
+public_folder: /img
+
+collections:
+  - name: "about"
+    label: "about"
+    folder: "src/content/about"
+    create: false
+    delete: false
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - {label: "Type", name: "Type", widget: "hidden", default: "about"}
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Description", name: "description", widget: "string",  }
+      - { label: "Image", name: "image", widget: "image", required: true }
+      - { label: "Body", name: "body", widget: "markdown", required: true }
+  - name: "music"
+    label: "music"
+    folder: "src/content/music"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - {label: "Type", name: "Type", widget: "hidden", default: "music"}
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Cover", name: "cover", widget: "image", required: true }
+      - { label: "Spotify Link", name: "Spotify", widget: "string", required: true }
+      - {label: "Apple Music link", name: "Apple", widget: "string", required: true}
+      - {label: "Preview Url", name: "preview", widget: "string", required: true}
+  - name: "shows"
+    label: "shows"
+    folder: "src/content/shows"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - {label: "Type", name: "Type", widget: "hidden", default: "shows"}
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime", format: "L" }
+      - { label: "Image", name: "image", widget: "image", required: true }
+      - { label: "Link", name: "link", widget: "string", required: true }
+  

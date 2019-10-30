@@ -1,0 +1,51 @@
+@import "../mixins/respond.scss";
+@import "../variables/colors.scss";
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+a:focus,
+button:focus,
+button:active {
+  opacity: 1;
+}
+
+a,
+button {
+  cursor: pointer;
+}
+
+html {
+  font-size: 62.5%;
+
+  @include respond(tab-land) {
+    font-size: 56.25%;
+  }
+
+  @include respond(tab-port) {
+    font-size: 50%;
+  }
+
+  @include respond(phonexs) {
+    font-size: 40%;
+  }
+
+  @include respond(big-desktop) {
+    font-size: 65%;
+  }
+}
+
+body {
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+* {
+  cursor: none;
+}
