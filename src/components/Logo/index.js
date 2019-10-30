@@ -119,7 +119,7 @@ function initScene(sceneInfo) {
   loader = new GLTFLoader()
 
   loader.load(
-    "/img/logo.glb",
+    "/img/ll.glb",
     data => {
       gltf = data
 
