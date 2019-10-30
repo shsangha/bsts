@@ -108,7 +108,7 @@ function initScene(sceneInfo) {
   scene = new Scene()
 
   camera = new PerspectiveCamera(
-    85,
+    65,
     container.offsetWidth / container.offsetHeight,
     0.001,
     10000
