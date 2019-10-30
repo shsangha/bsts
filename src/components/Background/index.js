@@ -33,7 +33,7 @@ class Index extends Component {
   }
 
   render() {
-    return <div id="bg" />
+    return <div style={{ overflow: "hidden" }} id="bg" />
   }
 }
 
@@ -54,7 +54,7 @@ function init() {
     20000
   )
 
-  light = new DirectionalLight(0xffffff, 0.8)
+  light = new DirectionalLight(0xffffff, 0)
   scene.add(light)
 
   const waterGeometry = new PlaneBufferGeometry(100, 100)
@@ -68,7 +68,7 @@ function init() {
     alpha: 1.0,
     sunDirection: light.position.clone().normalize(),
     sunColor: 0xffffff,
-    waterColor: 0x000,
+    waterColor: 0x0f0f0f,
     distortionScale: 3.7,
     fog: scene.fog !== undefined,
   })
@@ -81,8 +81,8 @@ function init() {
 
   const parameters = {
     distance: 400,
-    inclination: 0.49,
-    azimuth: 0.205,
+    inclination: 0.39,
+    azimuth: 0.05,
   }
 
   const cubeCamera = new CubeCamera(0.1, 1, 512)
