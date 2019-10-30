@@ -108,11 +108,12 @@ function initScene(sceneInfo) {
   scene = new Scene()
 
   camera = new PerspectiveCamera(
-    65,
+    85,
     container.offsetWidth / container.offsetHeight,
     0.001,
     10000
   )
+
   scene.add(camera)
 
   loader = new GLTFLoader()
@@ -138,14 +139,12 @@ function initScene(sceneInfo) {
         })
       }
 
-      const pivot = new Object3D(10, 1, 100)
+      const pivot = new Object3D()
       pivot.add(object)
 
       scene.add(pivot)
 
       //			scene.add(object);
-
-      box = object
 
       container.addEventListener("mousemove", onMouseMove, false)
 
@@ -163,13 +162,14 @@ function initScene(sceneInfo) {
       mroot.position.y -= size.y * 0.5
 
       mroot.position.copy(cent).multiplyScalar(-1)
-      mroot.position.z -= 2.5
+      mroot.position.z -= 2
+
+      box = object
 
       onWindowResize()
     },
     undefined,
     error => {
-      // eslint-disable-next-line no-console
       console.error(error)
     }
   )
