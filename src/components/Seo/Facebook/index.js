@@ -1,6 +1,7 @@
 import PropTypes from "prop-types"
 import React from "react"
 import Helmet from "react-helmet"
+import card from "../../../../static/img/card.jpg"
 
 const Facebook = ({ url, name, type, title, desc, image, locale }) => (
   <Helmet>
@@ -13,7 +14,7 @@ const Facebook = ({ url, name, type, title, desc, image, locale }) => (
     <meta property="og:type" content={type} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={desc} />
-    <meta property="og:image" content={image} />
+    <meta property="og:image" content={card} />
     <meta property="og:image:alt" content={desc} />
   </Helmet>
 )
