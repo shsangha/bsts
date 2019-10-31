@@ -18,9 +18,9 @@ module.exports = {
     pathPrefix: "/",
     title: "BSTS",
     titleAlt: "BSTS",
-    description: "", // CHANGE
+    description: "BSTS is a full-service creative advocacy collective.",
     banner: "/img/card.jpg",
-    headline: "HEADLINE CHANGE THIS", //CHANGE
+    headline: "BSTS",
     siteLanguage: "en",
     author: "Shawn Sangha",
     ogLanguage: "en_US",
