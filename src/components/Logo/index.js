@@ -131,7 +131,7 @@ function initScene(sceneInfo) {
                 node.material.envMap !== undefined))
           ) {
             node.material.envMap = envMap
-            node.material.envMapIntensity = 2
+            node.material.envMapIntensity = 3;
           }
         })
       }

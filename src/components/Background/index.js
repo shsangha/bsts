@@ -131,6 +131,7 @@ function onWindowResize() {
   camera.updateProjectionMatrix()
 
   renderer.setSize(window.innerWidth, window.innerHeight)
+  camera.updateProjectionMatrix()
 }
 
 function animate() {
