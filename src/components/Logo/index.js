@@ -17,6 +17,7 @@ import {
   TextureLoader,
 } from "three"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
+import { debounce } from "lodash"
 import styles from "./style.module.scss"
 import tex from "./env.jpg"
 
@@ -47,10 +48,10 @@ class Logo extends Component {
         <>
           <div className={styles.content}>
             <ul className={styles.services}>
-              <li className={styles.service}>publicity + media</li>
-              <li className={styles.service}>funding, rights + royalties</li>
-              <li className={styles.service}>management + consulting</li>
               <li className={styles.service}>artist + creative development</li>
+              <li className={styles.service}>management + consulting</li>
+              <li className={styles.service}>funding, rights + royalties</li>
+              <li className={styles.service}>publicity + media</li>
             </ul>
           </div>
 
@@ -75,6 +76,14 @@ const Model = {
   extensions: ["glTF", "glTF-pbrSpecularGlossiness", "glTF-Binary", "glTF-dds"],
   addEnvMap: true,
 }
+
+const onMouseMove = debounce(event => {
+  mouse.x = (event.clientX / window.innerWidth) * 2 - 1
+  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1
+  raycaster.setFromCamera(mouse, camera)
+  raycaster.ray.intersectPlane(plane, pointOfIntersection)
+  box.lookAt(pointOfIntersection)
+}, 10)
 
 function init() {
   container = document.getElementById("logo")
@@ -167,14 +176,6 @@ function initScene(sceneInfo) {
       console.log(error)
     }
   )
-}
-
-function onMouseMove(event) {
-  mouse.x = (event.clientX / window.innerWidth) * 2 - 1
-  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1
-  raycaster.setFromCamera(mouse, camera)
-  raycaster.ray.intersectPlane(plane, pointOfIntersection)
-  box.lookAt(pointOfIntersection)
 }
 
 function onTouchMove(event) {
