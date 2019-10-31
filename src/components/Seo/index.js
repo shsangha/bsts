@@ -113,7 +113,7 @@ const SEO = ({ title, desc, banner, pathname }) => {
       <Helmet title={seo.title}>
         <html lang={siteLanguage} />
         <meta name="description" content={seo.description} />
-        <meta name="image" content={seo.image} />
+        <meta name="image" content={`${seo.url}${seo.image}`} />
         <meta name="gatsby-starter" content={seo.title} />
 
         <script type="application/ld+json">

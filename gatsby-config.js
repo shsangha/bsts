@@ -16,8 +16,8 @@ module.exports = {
   siteMetadata: {
     siteUrl: "https://bsts.live",
     pathPrefix: "/",
-    title: "bsts.live",
-    titleAlt: "bsts.live",
+    title: "BSTS",
+    titleAlt: "BSTS",
     description: "", // CHANGE
     banner: "/img/card.jpg",
     headline: "HEADLINE CHANGE THIS", //CHANGE
