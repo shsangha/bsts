@@ -45,7 +45,7 @@ const SEO = ({ title, desc, banner, pathname }) => {
   const seo = {
     title: title || defaultTitle,
     description: desc || defaultDescription,
-    image: `${siteUrl}${banner || defaultBanner}`,
+    image: `${banner || defaultBanner}`,
     url: `${siteUrl}${pathname || ""}`,
   }
 
@@ -132,6 +132,7 @@ const SEO = ({ title, desc, banner, pathname }) => {
         name={facebook}
       />
       <Twitter
+        url={seo.url}
         title={seo.title}
         image={seo.image}
         desc={seo.description}

@@ -6,17 +6,11 @@ const Facebook = ({ url, name, type, title, desc, image, locale }) => (
   <Helmet>
     {name && <meta property="og:site_name" content={name} />}
     <meta property="og:locale" content={locale} />
-    <meta
-      property="og:url"
-      content="https://pensive-curran-016d11.netlify.com/"
-    />
+    <meta property="og:url" content={url} />
     <meta property="og:type" content={type} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={desc} />
-    <meta
-      property="og:image"
-      content={`https://pensive-curran-016d11.netlify.com/img/card.jpg`}
-    />
+    <meta property="og:image" content={`${url}${image}`} />
     <meta property="og:image:alt" content={desc} />
   </Helmet>
 )
