@@ -15,7 +15,7 @@ const Facebook = ({ url, name, type, title, desc, image, locale }) => (
     <meta property="og:description" content={desc} />
     <meta
       property="og:image"
-      content={`https://pensive-curran-016d11.netlify.com${image}`}
+      content={`https://pensive-curran-016d11.netlify.com/img/card.jpg`}
     />
     <meta property="og:image:alt" content={desc} />
   </Helmet>
