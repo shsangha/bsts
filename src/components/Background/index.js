@@ -81,7 +81,7 @@ function init() {
 
   const parameters = {
     distance: 400,
-    inclination: 0.39,
+    inclination: 0.59,
     azimuth: 0.05,
   }
 
