@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from "react"
 import {
   WebGLRenderer,
@@ -16,6 +17,7 @@ import {
   TextureLoader,
 } from "three"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
+import styles from "./style.module.scss"
 import tex from "./env.jpg"
 
 let mounted = true
@@ -41,7 +43,20 @@ class Logo extends Component {
           top: "0",
         }}
         id="logo"
-      />
+      >
+        <>
+          <div className={styles.content}>
+            <ul className={styles.services}>
+              <li className={styles.service}>publicity + media</li>
+              <li className={styles.service}>funding, rights + royalties</li>
+              <li className={styles.service}>management + consulting</li>
+              <li className={styles.service}>artist + creative development</li>
+            </ul>
+          </div>
+
+          <address className={styles.address}>info[at]bsts.live</address>
+        </>
+      </div>
     )
   }
 }
@@ -139,7 +154,6 @@ function initScene(sceneInfo) {
       bbox.setFromObject(mroot)
       bbox.getCenter(cent)
       bbox.getSize(size)
-      mroot.position.y -= size.y * 0.5
 
       mroot.position.copy(cent).multiplyScalar(-1)
       mroot.position.z -= 2.5
@@ -150,7 +164,7 @@ function initScene(sceneInfo) {
     },
     undefined,
     error => {
-      console.error(error)
+      console.log(error)
     }
   )
 }
