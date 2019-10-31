@@ -14,16 +14,16 @@ module.exports = {
   },
   pathPrefix: "/",
   siteMetadata: {
-    siteUrl: "https://officialunidentified.com/",
+    siteUrl: "https://bsts.live",
     pathPrefix: "/",
-    title: "Un!dentified",
-    titleAlt: "Un!dentified",
-    description: "The Official website and store of Un!dentified",
-    banner: "/static/img/logo.svg",
-    headline: "Bsts",
+    title: "bsts.live",
+    titleAlt: "bsts.live",
+    description: "", // CHANGE
+    banner: "/img/card.jpg",
+    headline: "HEADLINE CHANGE THIS", //CHANGE
     siteLanguage: "en",
     author: "Shawn Sangha",
-    twitter: "bsts",
+    ogLanguage: "en_US",
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -87,7 +87,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `static/img/logo.svg`,
+        icon: `static/img/card.jpg`,
       },
     },
     "gatsby-plugin-transition-link",
