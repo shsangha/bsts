@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css?family=Teko:700&display=swap");
+
+.content {
+  position: absolute;
+  bottom: 0;
+  transform: translateX(-50%);
+  left: 50%;
+  width: 100%;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.services {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 2rem 4rem;
+  margin-bottom: 1.5rem;
+}
+
+.service,
+.address {
+  background-image: url("../../../static/color.jpg");
+  background-clip: white;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.service {
+  flex-basis: 25%;
+  list-style: none;
+  font-size: 3rem;
+  text-align: center;
+  padding: 1rem 0;
+  text-transform: uppercase;
+  font-family: "Teko", sans-serif;
+  flex-basis: 50%;
+}
+
+.address {
+  font-family: "Teko", sans-serif;
+  font-size: 3.5rem;
+  padding: 3rem;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+@media only screen and (max-width: 87.5em) {
+  .service {
+    font-size: 1.5rem;
+  }
+}
+@media only screen and (max-width: 56.25em) {
+  .service {
+    font-size: 1.2rem;
+
+    flex-basis: 50%;
+  }
+
+  .address {
+    font-size: 2rem;
+  }
+}
+@media only screen and (max-width: 19.999em) {
+  .service {
+    font-size: 1.5rem;
+    flex-basis: 100%;
+  }
+}
